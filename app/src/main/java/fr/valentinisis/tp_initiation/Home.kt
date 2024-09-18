@@ -34,7 +34,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun Home(modifier: Modifier = Modifier) {
+fun HomeCompact(modifier: Modifier = Modifier) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         profilImage()
         name()
@@ -42,6 +42,11 @@ fun Home(modifier: Modifier = Modifier) {
         contact()
         start()
     }
+}
+
+@Composable
+fun HomeNotCompact(modifier: Modifier = Modifier) {
+    //
 }
 
 @Composable
