@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -46,7 +47,19 @@ fun HomeCompact(modifier: Modifier = Modifier) {
 
 @Composable
 fun HomeNotCompact(modifier: Modifier = Modifier) {
-    //
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Row() {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                profilImage()
+                name()
+            }
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                infos()
+                contact()
+                start()
+            }
+        }
+    }
 }
 
 @Composable
