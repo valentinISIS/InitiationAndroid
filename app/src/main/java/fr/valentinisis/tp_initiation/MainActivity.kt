@@ -12,9 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.window.core.layout.WindowSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
 import fr.valentinisis.tp_initiation.ui.theme.Tp_InitiationTheme
+import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,15 +35,32 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Serializable class HomeDestination
+@Serializable class ProfilDestination
+
 @Composable
 fun Screen(classes: WindowSizeClass){
-    val classeHauteur = classes.windowHeightSizeClass
     val classeLargeur = classes.windowWidthSizeClass
-    if  (WindowWidthSizeClass.COMPACT == classeLargeur) {
-        HomeCompact()
-    }
-    else
-    {
-        HomeNotCompact()
+
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = HomeDestination()){
+        composable<HomeDestination> {
+            if  (WindowWidthSizeClass.COMPACT == classeLargeur) {
+                HomeCompact(navController = navController)
+            }
+            else
+            {
+                HomeNotCompact(navController = navController)
+            }
+        }
+        composable<ProfilDestination> {
+            if  (WindowWidthSizeClass.COMPACT == classeLargeur) {
+                ProfilCompact()
+            }
+            else
+            {
+                ProfilNotCompact()
+            }
+        }
     }
 }

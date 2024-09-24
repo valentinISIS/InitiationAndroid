@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import fr.valentinisis.tp_initiation.ui.theme.Tp_InitiationTheme
 
 @Composable
@@ -35,18 +36,18 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun HomeCompact(modifier: Modifier = Modifier) {
+fun HomeCompact(modifier: Modifier = Modifier, navController: NavController) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         profilImage()
         name()
         infos()
         contact()
-        start()
+        start(navController = navController)
     }
 }
 
 @Composable
-fun HomeNotCompact(modifier: Modifier = Modifier) {
+fun HomeNotCompact(modifier: Modifier = Modifier, navController: NavController) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Row() {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -56,7 +57,7 @@ fun HomeNotCompact(modifier: Modifier = Modifier) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 infos()
                 contact()
-                start()
+                start(navController = navController)
             }
         }
     }
@@ -120,9 +121,9 @@ fun contact(modifier: Modifier = Modifier){
 }
 
 @Composable
-fun start(modifier: Modifier = Modifier){
+fun start(modifier: Modifier = Modifier, navController: NavController){
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { navController.navigate(ProfilDestination()) },
         Modifier.padding(40.dp))
     {
         Text(text = "Démarrer")
